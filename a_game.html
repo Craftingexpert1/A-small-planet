@@ -1,0 +1,161 @@
+<html>
+	<head>
+		<link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+		<style>
+		body {
+			font-family:"Muli", sans-serif!important;
+			background:url(stars.jpg);
+			color:white;
+		}
+		button {
+			font-family:"Muli", sans-serif;
+			border:1px solid transparent;
+			background:black;
+			color:white;
+			outline:none;
+			transition:ease 300ms;
+		}
+		button:hover {
+			border:1px solid white;
+		}
+		button:disabled {
+			opacity:0.5;
+		}
+		#stats {
+			float:right;
+		}
+		</style>
+	</head>
+	<body>
+		<div id="stats">
+			<p id="energy">Energy: 10</p>
+			<p id="wood" style="display:none;">Wood: 0</p>
+			<p id="meat" style="display:none;">Meat: 0</p>
+			<p id="hexen" style="display:none;">Hexen: 0</p>
+		</div>
+
+		<div id="trd-dlg" style="display:none;position:fixed;left:50%;top:50%;">
+				<p>1 wood for 1 hexen (--a crystal--)</p>
+				<button>Trade</button>
+		</div>
+
+		<h1 style="font-size:300%;">A small planet.</h1>
+
+		<br>
+
+		<button id="xplr">Explore</button>
+		<button style="display:none;" id="gthrwd">Gather Wood</button>
+		<button style="display:none;" id="hntgs">Hunt Geese</button>
+		<button style="display:none;" id="trd">Trade</button>
+		<p id="log"></p>
+		<script>
+		var energy = 10;
+		var wood = 0;
+		var meat = 0;
+		var hexen = 0
+		var look = ["This side is filled with trees.", "A quiet pond stands before you.", "This part of the planet is a barren desert."];
+		var rndm = Math.floor(Math.random() * 3);
+		setInterval(function() {
+			energy += 1;
+			document.querySelector("#energy").innerHTML = "Energy: " + energy;
+		}, 15000)
+		function lkrnd() {
+			document.querySelector("#log").innerHTML = look[rndm];
+			if (rndm === 0) {
+				trees();
+				refreshRndm();
+			}
+			else if (rndm === 1) {
+				geese();
+				refreshRndm();
+			}
+			else if (rndm == 3) {
+				creature();
+			}
+			else {
+				refreshRndm();
+			}
+			
+		}
+		document.querySelector("#xplr").addEventListener("click", function() {
+			if (energy > 0) {
+				energy -= 1;
+				document.querySelector("#energy").innerHTML = "Energy: " + energy;
+				document.querySelector("#gthrwd").style.display = "none";
+				document.querySelector("#hntgs").style.display = "none";
+				lkrnd();
+				this.disabled = true;
+				setTimeout(function() {
+					document.querySelector("#xplr").disabled = false;
+				}, 10000)
+			}
+			else {
+				document.querySelector("#log").innerHTML = "You're tired. Get some more energy!";
+			}
+		});
+
+		function trees() {
+			document.querySelector("#gthrwd").style.display = "block";
+			look.splice(3, 1, "Somthing moves in the forest.");
+			document.querySelector("#gthrwd").addEventListener("click", function() {
+				wood += 1;
+				energy -= 1;
+				document.querySelector("#energy").innerHTML = "Energy: " + energy;
+				document.querySelector("#wood").style.display = "block";
+				document.querySelector("#wood").innerHTML = "Wood: " + wood;
+				this.disabled = true;
+				setTimeout(function() {
+					document.querySelector("#gthrwd").disabled = false;
+				}, 5000)
+			});
+		}
+
+		function geese() {
+			document.querySelector("#hntgs").style.display = "block";
+			look.splice(4, 1, "You see a rock. An idea comes to you.");
+			document.querySelector("#hntgs").addEventListener("click", function() {
+				meat += 1;
+				energy -= 1;
+				document.querySelector("#meat").style.display = "block";
+				document.querySelector("#meat").innerHTML = "Meat: " + meat;
+				document.querySelector("#energy").innerHTML = "Energy: " + energy;
+				document.querySelector("#hntgs").disabled = true;
+				setTimeout(function() {
+					document.querySelector("#hntgs").disabled = false;
+				}, 7500)
+			});
+		}
+
+		function creature() {
+			setTimeout(function() {
+				document.querySelector("#log").innerHTML = "The figure steps into the light. It is here to trade.";
+				document.querySelector("#trd").style.display = "block";
+			}, 2000);
+			document.querySelector("#trd").addEventListener("click", function() {
+				document.querySelector("#trd-dlg").style.display = "block";
+				trade(wood, hexen, 1);
+				document.querySelector("#wood").innerHTML = "Wood: " + wood;
+				document.querySelector("#hexen").style.display = "block";
+				document.querySelector("#hexen").innerHTML = "Hexen: " + hexen;
+			});
+
+		}
+
+		function trade(give, get, howmany) {
+			if (give < 0) {
+				document.querySelector("#trd-dlg p").innerHTML = "You don't have enough " + String(give);
+			}
+			else {
+				give -= howmany;
+				get += howmany;
+				document.querySelector("#trd-dlg p").innerHTML = howmany + String(give) + " for " + howmany + String(get);
+			}
+		}
+
+		function refreshRndm() {
+			i = look.length;
+			rndm = Math.floor(Math.random() * i);
+		}
+		</script>
+	</body>
+</html>
