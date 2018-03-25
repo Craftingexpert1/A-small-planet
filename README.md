@@ -1,2 +1,2 @@
-# A-small-planet
+# A small planet
 A game
