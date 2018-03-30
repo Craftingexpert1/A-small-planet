@@ -31,6 +31,7 @@
 			<p id="energy">Energy: 10</p>
 			<p id="wood" style="display:none;">Wood: 0</p>
 			<p id="meat" style="display:none;">Meat: 0</p>
+			<p id="hexen" style="display:none;">Hexen: 0</p>
 		</div>
 
 		<h1 style="font-size:300%;">A small planet.</h1>
@@ -46,7 +47,7 @@
 		var energy = 10;
 		var wood = 0;
 		var meat = 0;
-		var hexen = 0
+		var hexen = 0;
 		var look = ["This side is filled with trees.", "A quiet pond stands before you.", "This part of the planet is a barren desert."];
 		var rndm = Math.floor(Math.random() * 3);
 		setInterval(function() {
@@ -131,6 +132,12 @@
 				document.querySelector("#wood").innerHTML = "Wood: " + wood;
 				document.querySelector("#meat").innerHTML = "Meat: " + meat;
 				document.querySelector("#log").innerHTML = "The creature says thanks and leaves a small gift."
+				setTimeout(function() {
+					document.querySelector("#log").innerHTML = "You see the gift. It's hexen, a perfect source of energy.";
+					hexen += 1;
+					document.querySelector("#hexen").innerHTML = "Hexen: " + hexen;
+					document.querySelector("#hexen").style.display = "block";
+				}, 1500);
 
 			});
 		}
