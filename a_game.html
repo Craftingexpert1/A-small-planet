@@ -40,6 +40,7 @@
 		<button id="xplr">Explore</button>
 		<button style="display:none;" id="gthrwd">Gather Wood</button>
 		<button style="display:none;" id="hntgs">Hunt Geese</button>
+		<button style="display:none;" id="gvsmtng">Give something</button>
 		<p id="log"></p>
 		<script>
 		var energy = 10;
@@ -121,9 +122,17 @@
 
 		function creature() {
 			setTimeout(function() {
-				document.querySelector("#log").innerHTML = "The figure steps into the light. It is shivering";
+				document.querySelector("#log").innerHTML = "The figure steps into the light. It is shivering.";
 			}, 2000);
+			document.querySelector("#gvsmtng").style.display = "block";
+			document.querySelector("#gvsmtng").addEventListener("click", function() {
+				wood -= 1;
+				meat -= 1;
+				document.querySelector("#wood").innerHTML = "Wood: " + wood;
+				document.querySelector("#meat").innerHTML = "Meat: " + meat;
+				document.querySelector("#log").innerHTML = "The creature says thanks and leaves a small gift."
 
+			});
 		}
 
 		function refreshRndm() {
