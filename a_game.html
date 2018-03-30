@@ -31,12 +31,6 @@
 			<p id="energy">Energy: 10</p>
 			<p id="wood" style="display:none;">Wood: 0</p>
 			<p id="meat" style="display:none;">Meat: 0</p>
-			<p id="hexen" style="display:none;">Hexen: 0</p>
-		</div>
-
-		<div id="trd-dlg" style="display:none;position:fixed;left:50%;top:50%;">
-				<p>1 wood for 1 hexen (--a crystal--)</p>
-				<button>Trade</button>
 		</div>
 
 		<h1 style="font-size:300%;">A small planet.</h1>
@@ -46,7 +40,6 @@
 		<button id="xplr">Explore</button>
 		<button style="display:none;" id="gthrwd">Gather Wood</button>
 		<button style="display:none;" id="hntgs">Hunt Geese</button>
-		<button style="display:none;" id="trd">Trade</button>
 		<p id="log"></p>
 		<script>
 		var energy = 10;
@@ -75,7 +68,7 @@
 			else {
 				refreshRndm();
 			}
-			
+
 		}
 		document.querySelector("#xplr").addEventListener("click", function() {
 			if (energy > 0) {
@@ -128,28 +121,9 @@
 
 		function creature() {
 			setTimeout(function() {
-				document.querySelector("#log").innerHTML = "The figure steps into the light. It is here to trade.";
-				document.querySelector("#trd").style.display = "block";
+				document.querySelector("#log").innerHTML = "The figure steps into the light. It is shivering";
 			}, 2000);
-			document.querySelector("#trd").addEventListener("click", function() {
-				document.querySelector("#trd-dlg").style.display = "block";
-				trade(wood, hexen, 1);
-				document.querySelector("#wood").innerHTML = "Wood: " + wood;
-				document.querySelector("#hexen").style.display = "block";
-				document.querySelector("#hexen").innerHTML = "Hexen: " + hexen;
-			});
 
-		}
-
-		function trade(give, get, howmany) {
-			if (give < 0) {
-				document.querySelector("#trd-dlg p").innerHTML = "You don't have enough " + String(give);
-			}
-			else {
-				give -= howmany;
-				get += howmany;
-				document.querySelector("#trd-dlg p").innerHTML = howmany + String(give) + " for " + howmany + String(get);
-			}
 		}
 
 		function refreshRndm() {
