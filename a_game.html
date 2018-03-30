@@ -123,22 +123,26 @@
 
 		function creature() {
 			setTimeout(function() {
-				document.querySelector("#log").innerHTML = "The figure steps into the light. It is shivering.";
-			}, 2000);
+				document.querySelector("#log").innerHTML = "The figure steps into the light. It is very hungry.";
+			}, 3000);
 			document.querySelector("#gvsmtng").style.display = "block";
 			document.querySelector("#gvsmtng").addEventListener("click", function() {
-				wood -= 1;
-				meat -= 1;
-				document.querySelector("#wood").innerHTML = "Wood: " + wood;
-				document.querySelector("#meat").innerHTML = "Meat: " + meat;
-				document.querySelector("#log").innerHTML = "The creature says thanks and leaves a small gift."
-				setTimeout(function() {
-					document.querySelector("#log").innerHTML = "You see the gift. It's hexen, a perfect source of energy.";
-					hexen += 1;
-					document.querySelector("#hexen").innerHTML = "Hexen: " + hexen;
-					document.querySelector("#hexen").style.display = "block";
-				}, 1500);
-
+				if (wood > 0 && meat > 0) {
+					wood -= 1;
+					meat -= 1;
+					document.querySelector("#wood").innerHTML = "Wood: " + wood;
+					document.querySelector("#meat").innerHTML = "Meat: " + meat;
+					document.querySelector("#log").innerHTML = "The creature says thanks and leaves a small gift."
+					setTimeout(function() {
+						document.querySelector("#log").innerHTML = "You see the gift. It's hexen, a perfect source of energy.";
+						hexen += 1;
+						document.querySelector("#hexen").innerHTML = "Hexen: " + hexen;
+						document.querySelector("#hexen").style.display = "block";
+					}, 3000);
+				}
+				else {
+					document.querySelector("#log").innerHTML = "You didn't have enough recources to give. The creature says thanks any way";
+				}
 			});
 		}
 
