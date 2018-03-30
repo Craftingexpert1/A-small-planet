@@ -107,7 +107,7 @@
 
 		function geese() {
 			document.querySelector("#hntgs").style.display = "block";
-			look.splice(4, 1, "You see a rock. An idea comes to you.");
+			look.splice(4, 1, "A patch of grass looks like a perfect place to put a home.");
 			document.querySelector("#hntgs").addEventListener("click", function() {
 				meat += 1;
 				energy -= 1;
@@ -138,10 +138,11 @@
 						hexen += 1;
 						document.querySelector("#hexen").innerHTML = "Hexen: " + hexen;
 						document.querySelector("#hexen").style.display = "block";
+						look.splice(5, 1, "The hexen could get you out of the planet.")
 					}, 3000);
 				}
 				else {
-					document.querySelector("#log").innerHTML = "You didn't have enough recources to give. The creature says thanks any way";
+					document.querySelector("#log").innerHTML = "You didn't have enough to give. The creature says thanks any way.";
 				}
 			});
 		}
