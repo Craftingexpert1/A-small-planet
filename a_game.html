@@ -45,8 +45,12 @@
 		<button id="xplr">Explore</button>
 		<button style="display:none;" id="gthrwd">Gather Wood</button>
 		<button style="display:none;" id="hntgs">Hunt Geese</button>
-		<button style="display:none;" id="gvsmtng">Give something</button>
+		<button style="display:none;" id="gvsmtng">Give Something</button>
+		<button style="display:none;" id="shelter">Build Shelter</button>
 		<p id="log"></p>
+
+		<h3>Your shelters</h3>
+		<p>You have no shelters!<p>
 		<script>
 		var energy = 10;
 		var wood = 0;
@@ -70,6 +74,9 @@
 			}
 			else if (rndm == 3) {
 				creature();
+				refreshRndm();
+			} else if (rndm === 4) {
+				shelter();
 				refreshRndm();
 			}
 			else {
@@ -152,7 +159,22 @@
 				}
 			});
 		}
-
+			function shelter() {
+			
+			document.querySelector("#shelter").style.display = "block";
+			document.querySelector("#shelter").addEventListener("click", function() {
+				
+				if (wood > 0) {
+					wood -= 5;
+					document.querySelector("#wood").innerHTML = "Wood: " + wood;
+					document.querySelector("#log").innerHTML = "You have built a shelter."
+					
+				}
+				else {
+					document.querySelector("#log").innerHTML = "You didn't have enough to give. The creature says thanks any way.";
+				}
+			});
+		}
 		function refreshRndm() {
 			i = look.length;
 			rndm = Math.floor(Math.random() * i);
