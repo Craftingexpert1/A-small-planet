@@ -169,18 +169,18 @@
 		function shelter(size, desert) {
 			shelter.cost = size * 5;
 			if (desert) {
-				shelter.cost = this * 2;
+				this.cost = this * 2;
 			};
-			if (wood >= shelter.cost) {
-			wood -= shelter.cost;
+			if (wood >= this.cost) {
+			wood -= this.cost;
 			document.querySelector("#wood").innerHTML = "Wood: " + wood;
 			document.querySelector("#log").innerHTML = "You have built a shelter."
 			document.querySelector("#shltrdv").style.display = "block";
-			shelter.rooms = new Array(size);
-			Object.seal(shelter.rooms);
-			shelter.El = document.createElement("p");
-			shelter.El.className = "shelters";
-			document.querySelector("#shltrdv").appendChild(shelter.El);
+			this.rooms = new Array(size);
+			Object.seal(this.rooms);
+			this.El = document.createElement("p");
+			this.El.className = "shelters";
+			document.querySelector("#shltrdv").appendChild(this.El);
 			document.querySelector("#noShelters").style.display = "none";
 			}
 			else {
@@ -188,12 +188,11 @@
 			}
 		}
 			var shelters = [];
-			function shelter() {
+			function shelterClick() {
 				document.querySelector("#shelter").style.display = "block";
 				document.querySelector("#shelter").addEventListener("click", function() {
 				shelters.push(new shelter(1, false));
 			});
-		}
 			
 
 		function refreshRndm() {
