@@ -81,7 +81,7 @@
 				creature();
 				refreshRndm();
 			} else if (rndm === 4) {
-				shelter();
+				shelterClick();
 				refreshRndm();
 			}
 			else {
@@ -171,7 +171,7 @@
 			if (desert) {
 				this.cost = this * 2;
 			};
-			if (wood >= this.cost) {
+			if (wood > this.cost - 1) {
 			wood -= this.cost;
 			document.querySelector("#wood").innerHTML = "Wood: " + wood;
 			document.querySelector("#log").innerHTML = "You have built a shelter."
