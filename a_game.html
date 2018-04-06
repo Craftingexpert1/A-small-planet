@@ -49,8 +49,13 @@
 		<button style="display:none;" id="shelter">Build Shelter</button>
 		<p id="log"></p>
 
-		<h3>Your shelters</h3>
-		<p>You have no shelters!<p>
+		<br>
+		<br>
+
+		<div id="shltrdv" style="display:none;">
+			<h3>Your shelters</h3>
+			<p>You have no shelters!<p>
+		</div>
 		<script>
 		var energy = 10;
 		var wood = 0;
@@ -159,16 +164,16 @@
 				}
 			});
 		}
+
 			function shelter() {
-			
-			document.querySelector("#shelter").style.display = "block";
-			document.querySelector("#shelter").addEventListener("click", function() {
-				
-				if (wood > 0) {
+				document.querySelector("#shelter").style.display = "block";
+				document.querySelector("#shelter").addEventListener("click", function() {
+
+				if (wood > 5) {
 					wood -= 5;
 					document.querySelector("#wood").innerHTML = "Wood: " + wood;
 					document.querySelector("#log").innerHTML = "You have built a shelter."
-					
+					document.querySelector("#shltrdv").style.display = "block";
 				}
 				else {
 					document.querySelector("#log").innerHTML = "You didn't have enough to give. The creature says thanks any way.";
