@@ -43,9 +43,9 @@
 		<br>
 
 		<button id="xplr">Explore</button>
-		<button style="display:none;" id="gthrwd">Gather Wood</button>
-		<button style="display:none;" id="hntgs">Hunt Geese</button>
-		<button style="display:none;" id="gvsmtng">Give Something</button>
+		<button style="display:none;" id="gthrwd">Gather Wood: 1 Energy</button>
+		<button style="display:none;" id="hntgs">Hunt Geese: 2 Energy</button>
+		<button style="display:none;" id="gvsmtng">Give Something: 5 Meat + 5 Wood</button>
 		<button style="display:none;" id="shelter">Build Shelter</button>
 		<p id="log"></p>
 
@@ -54,7 +54,7 @@
 
 		<div id="shltrdv" style="display:none;">
 			<h3>Your shelters</h3>
-			<p>You have no shelters!<p>
+			<p id="noShelters">You have no shelters!<p>
 		</div>
 		<script>
 		var energy = 10;
@@ -164,22 +164,36 @@
 				}
 			});
 		}
-
+		function shelter(size, desert) {
+			shelter.cost = size * 5;
+			if (desert) {
+				shelter.cost = this * 2;
+			};
+			if (wood >= shelter.cost) {
+			wood -= shelter.cost;
+			document.querySelector("#wood").innerHTML = "Wood: " + wood;
+			document.querySelector("#log").innerHTML = "You have built a shelter."
+			document.querySelector("#shltrdv").style.display = "block";
+			shelter.rooms = new Array(size);
+			Object.seal(shelter.rooms);
+			shelter.El = document.createElement("p");
+			shelter.El.className = "shelters";
+			document.querySelector("#shltrdv").appendChild(shelter.El);
+			document.querySelector("#noShelters").style.display = "none";
+			}
+			else {
+				document.querySelector("#log").innerHTML = "You don't have enough wood to build a shelter. ";
+			}
+		}
+			var shelters = [];
 			function shelter() {
 				document.querySelector("#shelter").style.display = "block";
 				document.querySelector("#shelter").addEventListener("click", function() {
-
-				if (wood > 5) {
-					wood -= 5;
-					document.querySelector("#wood").innerHTML = "Wood: " + wood;
-					document.querySelector("#log").innerHTML = "You have built a shelter."
-					document.querySelector("#shltrdv").style.display = "block";
-				}
-				else {
-					document.querySelector("#log").innerHTML = "You don't have enough wood!"
-				}
+				shelters.push(new shelter(1, false));
 			});
 		}
+			
+
 		function refreshRndm() {
 			i = look.length;
 			rndm = Math.floor(Math.random() * i);
