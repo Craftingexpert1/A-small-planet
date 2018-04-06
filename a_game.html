@@ -111,6 +111,7 @@
 			document.querySelector("#gthrwd").style.display = "block";
 			look.splice(3, 1, "Somthing moves in the forest.");
 			document.querySelector("#gthrwd").addEventListener("click", function() {
+				if (energy > 1){
 				wood += 1;
 				energy -= 1;
 				document.querySelector("#energy").innerHTML = "Energy: " + energy;
@@ -119,7 +120,7 @@
 				this.disabled = true;
 				setTimeout(function() {
 					document.querySelector("#gthrwd").disabled = false;
-				}, 5000)
+				}, 5000)}
 			});
 		}
 
@@ -127,6 +128,7 @@
 			document.querySelector("#hntgs").style.display = "block";
 			look.splice(4, 1, "A patch of grass looks like a perfect place to put a home.");
 			document.querySelector("#hntgs").addEventListener("click", function() {
+				if (energy > 1){
 				meat += 1;
 				energy -= 1;
 				document.querySelector("#meat").style.display = "block";
@@ -135,7 +137,7 @@
 				document.querySelector("#hntgs").disabled = true;
 				setTimeout(function() {
 					document.querySelector("#hntgs").disabled = false;
-				}, 7500)
+				}, 7500)}
 			});
 		}
 
