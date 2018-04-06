@@ -168,10 +168,6 @@
 		}
 		function shelter(size, desert) {
 			this.cost = size * 5;
-			if (desert) {
-				this.cost = this * 2;
-			};
-			if (wood > this.cost - 1) {
 			wood -= this.cost;
 			document.querySelector("#wood").innerHTML = "Wood: " + wood;
 			document.querySelector("#log").innerHTML = "You have built a shelter."
@@ -182,16 +178,14 @@
 			this.El.className = "shelters";
 			document.querySelector("#shltrdv").appendChild(this.El);
 			document.querySelector("#noShelters").style.display = "none";
-			}
-			else {
-				document.querySelector("#log").innerHTML = "You don't have enough wood to build a shelter. ";
-			}
 		}
 			var shelters = [];
 			function shelterClick() {
 				document.querySelector("#shelter").style.display = "block";
 				document.querySelector("#shelter").addEventListener("click", function() {
-				shelters.push(new shelter(1, false));
+				if (wood >= 5){
+					shelters.push(new shelter(1, false));
+				}
 			});
 			}
 
