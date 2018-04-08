@@ -56,7 +56,8 @@
 		<button style="display:none;" id="hntgs">Hunt Geese: 2 Energy</button>
 		<button style="display:none;" id="gvsmtng">Give Something: 5 Meat + 5 Wood</button>
 		<br>
-		<button style="display:none;" id="shelter">Build Shelter</button>
+		<button style="display:none;" id="shelter">Build Shelter: 5 wood</button>
+		<button style="display:none;" id="rocket">Build a rocket: 3 wood + 3 meat + hexen (more you have, the more you can go!)</button>
 		<p id="log"></p>
 
 		<br>
@@ -93,6 +94,9 @@
 			} else if (rndm === 4) {
 				shelterClick();
 				refreshRndm();
+			} else if (rndm === 5) {
+				rocket();
+				refreshRngm();
 			}
 			else {
 				refreshRndm();
@@ -213,6 +217,11 @@
 				}
 			});
 			}
+
+		function rocket() {
+			document.querySelector("#rocket").style.display = "block";
+			document.querySelector("#rocket").addEventListener
+		}
 
 		function refreshRndm() {
 			i = look.length;
