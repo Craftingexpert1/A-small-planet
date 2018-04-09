@@ -96,7 +96,7 @@
 				refreshRndm();
 			} else if (rndm === 5) {
 				rocket();
-				refreshRngm();
+				refreshRndm();
 			}
 			else {
 				refreshRndm();
@@ -220,7 +220,9 @@
 
 		function rocket() {
 			document.querySelector("#rocket").style.display = "block";
-			document.querySelector("#rocket").addEventListener
+			document.querySelector("#rocket").addEventListener("click", function() {
+				console.log("yahoo i fixed kavins typo and fixed the game and launched a rocket cause a typo of one letter caused a rocket to blow up killing 13 people so i fixed kavins error and saved this rocket")
+			});
 		}
 
 		function refreshRndm() {
