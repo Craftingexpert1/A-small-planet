@@ -1,3 +1,4 @@
+
 <html>
 	<head>
 		<link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
@@ -142,9 +143,9 @@
 			document.querySelector("#hntgs").style.display = "block";
 			look.splice(4, 1, "A patch of grass looks like a perfect place to put a home.");
 			document.querySelector("#hntgs").addEventListener("click", function() {
-				if (energy > 1){
+				if (energy >= 2){
 					meat += 1;
-					energy -= 1;
+					energy -= 2;
 					document.querySelector("#meat").style.display = "block";
 					document.querySelector("#meat").innerHTML = "Meat: " + meat;
 					document.querySelector("#energy").innerHTML = "Energy: " + energy;
